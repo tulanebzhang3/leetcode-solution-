@@ -1,0 +1,38 @@
+709. to lowercase java
+Implement function ToLowerCase() that has a string parameter str, and returns the same string in lowercase.
+
+#1 directly use low() function 
+class Solution:
+    def toLowerCase(self, str):
+        return str.lower()
+
+#2 use replace() method 
+class Solution:
+    def toLowerCase(self, str):
+        for char in str:
+            if 'A'<=char<='Z':
+                str = str.replace(char,chr(ord(char)+32))
+       return str
+
+#3 use empty string 
+class Solution:
+    def toLowerCase(self, str):
+        newStr = ''
+        for char in str:
+            if 'A'<=char<='Z':
+                newStr+= chr(ord(char)+32)
+            else:
+                newStr += char
+        return newStr
+
+#4 use empty list method 
+class Solution:
+    def toLowerCase(self, str):
+        newStr = []
+        for char in str:
+            if 'A'<=char<='Z':
+                newStr.append(chr(ord(char)+32))
+            else:
+                newStr.append(char)
+        return ''.join(newStr)
+                       
