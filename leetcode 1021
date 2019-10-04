@@ -1,0 +1,33 @@
+1021. Remove Outermost Parentheses
+A valid parentheses string is either empty (""), "(" + A + ")", or A + B, where A and B are valid parentheses strings, and + represents string concatenation.  For example, "", "()", "(())()", and "(()(()))" are all valid parentheses strings.  A valid parentheses string S is primitive if it is nonempty, and there does not exist a way to split it into S = A+B, with A and B nonempty valid parentheses strings.  Given a valid parentheses string S, consider its primitive decomposition: S = P_1 + P_2 + ... + P_k, where P_i are primitive valid parentheses strings.  Return S after removing the outermost parentheses of every primitive string in the primitive decomposition of S.
+Solution #1 just count the number of () then add it to newString
+class Solution:
+    def removeOuterParentheses(self, paString):
+        newString = ''
+        sum = 0 
+        for c in paString:
+            if c is '(':
+                sum += 1
+                if sum>1:
+                    newString += c
+            else:
+                sum-=1
+                if sum>0:
+                    newString += c
+        return newString
+
+solution #2 use stack to calculate the number of ()
+class Solution:
+    def removeOuterParentheses(self, paString):
+        stack = []
+        newString = []
+        for c in paString:
+            if c == '(':
+                if stack:
+                    newString.append(c)
+                stack.append(c)
+            else:
+                stack.pop()
+                if stack:
+                    newString.append(c)
+        return ''.join(newString)
