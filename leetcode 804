@@ -1,0 +1,36 @@
+804. Unique Morse Code Words
+International Morse Code defines a standard encoding where each letter is mapped to a series of dots and dashes, as follows: "a" maps to ".-", "b" maps to "-...", "c" maps to "-.-.", and so on.
+Now, given a list of words, each word can be written as a concatenation of the Morse code of each letter. For example, "cba" can be written as "-.-..--...", (which is the concatenation "-.-." + "-..." + ".-"). We'll call such a concatenation, the transformation of a word. Return the number of different transformations among all words we have.      
+
+Solution #1 use python set() to remove all duplicated element
+class Solution:
+    def uniqueMorseRepresentations(self, Wordslist):
+        Morse = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
+        newSet = set()
+        for word in Wordslist:
+            newWord = ''
+            for c in word:
+                newc = Morse[ord(c)-ord('a')]
+                newWord += newc
+            newSet.add(newWord)
+        return len(newSet)        
+
+soultion #2   use list method to get a new list then convert to set
+class Solution:
+    def uniqueMorseRepresentations(self, Wordslist):
+        Morse = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
+        newList = []
+        for word in Wordslist:
+            newWord = []
+            for c in word:
+                newc = Morse[ord(c)-ord('a')]
+                newWord.append(newc)
+            newList.append(''.join(newWord))
+        return len(set(newList))
+
+solution #3 use python List Comprehension
+class Solution:
+    def uniqueMorseRepresentations(self, WordsList):
+        Morse = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
+        newSet = {''.join(Morse[ord(c)-ord('a')]for c in word)for word in WordsList}
+        return len(newSet)
