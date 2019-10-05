@@ -1,0 +1,25 @@
+1207. Unique Number of Occurrences
+Given an array of integers arr, write a function that returns true if and only if the number of occurrences of each value in the array is unique.
+
+#1 just use set and list function in Python to get answer
+
+class Solution:
+    def uniqueOccurrences(self, arr: List[int]) -> bool:
+        arrlist = []
+        s = set(arr)
+        for elem in s:
+            x = arr.count(elem)
+            arrlist.append(x)
+        return len(arrlist) == len(set(arrlist))          
+
+#2 use dictionary and set together to get answer
+
+class Solution:
+    def uniqueOccurrences(self, arr: List[int]) -> bool:
+        dicarr = dict()
+        for element in arr:
+            if element not in dicarr:
+                dicarr[element] = 1
+            else:
+                dicarr[element] +=1
+        return len(dicarr) == len(set(dicarr.values()))
