@@ -1,0 +1,33 @@
+961. N-Repeated Element in Size 2N Array
+In a array A of size 2N, there are N+1 unique elements, and exactly one of these elements is repeated N times.  Return the element repeated N times.
+#1 use python count method
+class Solution:
+    def repeatedNTimes(self, A: List[int]) -> int:
+        for elem in A:
+            number = A.count(elem)
+            if number >1 :
+                return elem
+
+#2 use two loop to get answer
+class Solution:
+    def repeatedNTimes(self, A: List[int]) -> int:
+        for i in range (0, len(A)):
+            for j in range (i+1, len(A)):
+                if A[i] == A[j]:
+                    return A[i]
+
+#3 use HashMap method
+class Solution:
+    def repeatedNTimes(self, A: List[int]) -> int:
+        dictcount = collections.Counter(A)
+        for key in dictcount:
+            if dictcount[key]>1:
+                return key
+
+#4 there must be same number among i, i+1, i+2 because half of list is same
+class Solution:
+    def repeatedNTimes(self, A: List[int]) -> int:
+        for i in range(len(A)-2):
+             if A[i]==A [i+1] or A[i] == A[i+2]:
+                return A[i]
+        return A[len(A)-1]
