@@ -1,0 +1,41 @@
+977. squares of a sorted array
+Given an array of integers A sorted in non-decreasing order, return an array of the squares of each number, also in sorted non-decreasing order.
+#1 use python list comprehension and sort method
+class Solution:
+    def sortedSquares(self, A: List[int]) -> List[int]:
+        newList = [s*s for s in A]
+        newList.sort()
+        return newList
+#2 use sortmethod to get a new List do not need python method
+class Solution:
+    def sortedSquares(self, A: List[int]) -> List[int]:
+        if A[0]>=0:
+            for i in range (len(A)):
+                A[i]*= A[i]
+            return A;
+        i = 0 
+        while i<len(A) and A[i]<0:
+            i+=1
+        j=i-1
+        for x in range (len(A)):
+            A[x] *=A[x]
+        newList = []
+        while j>=0 and i<len(A):
+            if A[i]< A[j]:
+                newList.append(A[i])
+                i+=1
+            elif A[i]> A[j]:
+                newList.append(A[j])
+                j-=1
+            else:
+                newList.append(A[i])
+                newList.append(A[j])
+                i+=1
+                j-=1
+        if j<0 and i<len(A):
+            newList.extend(A[i:])
+        if i>=len(A) and j>=0:
+            while j>=0:
+                newList.append(A[j])
+                j-=1
+        return newList
