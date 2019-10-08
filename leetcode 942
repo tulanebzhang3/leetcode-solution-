@@ -1,0 +1,35 @@
+942. DI String Match
+Given a string S that only contains "I" (increase) or "D" (decrease), let N = S.length.  Return any permutation A of [0, 1, ..., N] such that for all i = 0, ..., N-1:  If S[i] == "I", then A[i] < A[i+1] If S[i] == "D", then A[i] > A[i+1]
+
+#1 this is a interesting question. First we know if S[0] is I, we put 0, if S[0] is D, we put len(s), so we just need to put highest number if we see D, lowest number when we see I, then high-- and low++, finally we just need to put low or high number in 
+class Solution:
+    def diStringMatch(self, S: str) -> List[int]:
+        low = 0
+        high = len(S)
+        slist = []
+        for s in S:
+            if s == 'D':
+                slist.append(high)
+                high -=1
+            else:
+                slist.append(low)
+                low+=1
+        slist.append(low)
+        return slist
+
+#2 do not need append method. Just use count, first we scan add high number from n to ‘D’, then we add low number from 0 to ‘I’
+class Solution:
+    def diStringMatch(self, S: str) -> List[int]:
+        n = len(S)
+        count = 0
+        listS = [0]*(n+1)
+        for i in range (n):
+            if S[i] == 'D':
+                listS [i] = n
+                n -=1
+        for i in range (len(listS)):
+            if listS[i] == 0:
+                listS[i] = count
+                count +=1
+        return listS
+                    
