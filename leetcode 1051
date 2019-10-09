@@ -1,0 +1,27 @@
+1051. Height Checker
+Students are asked to stand in non-decreasing order of heights for an annual photo.  Return the minimum number of students not standing in the right positions.  (This is the number of students that must move in order for all students to be standing in non-decreasing order of height.)
+
+#1 check the different between original list and new list
+class Solution:
+    def heightChecker(self, heights: List[int]) -> int:
+        newList = []
+        for i in heights:
+            newList.append(i)
+        heights.sort()
+        count = 0
+        for i in range(len(newList)):
+            if newList[i]!= heights[i]:
+                count+=1
+        return count
+
+#2 use copy method to see the difference
+class Solution:
+    def heightChecker(self, heights: List[int]) -> int:
+        newList = heights.copy()
+        heights.sort()
+        count = 0
+        for i in range(len(newList)):
+            if newList[i]!= heights[i]:
+                count+=1
+        return count
+                
