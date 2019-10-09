@@ -1,0 +1,26 @@
+929. Unique Email Addresses
+
+#1 use python replace and split method, use set to remove
+class Solution:
+    def numUniqueEmails(self, emails: List[str]) -> int:
+        s = set()
+        for email in emails:
+            newList = email.split('@')
+            newEmail = newList[0].split('+')
+            s.add(newEmail[0].replace('.','')+'@'+newList[1])
+        return len(s)
+
+#2 similar method but use list
+class Solution:
+    def numUniqueEmails(self, emails: List[str]) -> int:
+        count=0
+        email=[]
+        for address in emails:
+            local=address.split("@")[0].split("+")[0].replace(".","")
+            domain=address.split("@")[1]
+            address=local+"@"+domain
+            if address not in email:
+                email.append(address)
+                count+=1
+        return count
+            
