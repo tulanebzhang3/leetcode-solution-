@@ -1,0 +1,27 @@
+leetcode 136 single number
+Given a non-empty array of integers, every element appears twice except for one. Find that single one
+
+class Solution need sort:
+    def singleNumber(self, nums: List[int]) -> int:
+        nums.sort()
+        i=0
+        j=1
+        while j<len(nums):
+            if nums[i] == nums[j]:
+                i+=2
+                j+=2
+            else:
+                return nums[i]
+        return nums[i]
+
+class Solution just use sum method in one word:
+    def singleNumber(self, nums: List[int]) -> int:
+        return 2*sum(set(nums))-sum(nums)
+
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        a=0
+        for i in nums:
+            a^= i
+        return a
+ 
