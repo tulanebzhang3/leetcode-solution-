@@ -1,0 +1,24 @@
+872. Leaf-Similar Trees
+For example, in the given tree above, the leaf value sequence is (6, 7, 4, 9, 8).  Two binary trees are considered leaf-similar if their leaf value sequence is the same.  Return true if and only if the two given trees with head nodes root1 and root2 are leaf-similar.
+
+class Solution:
+    def leafSimilar(self, root1: TreeNode, root2: TreeNode) -> bool:
+        newList1 = []
+        newList2 = []
+        self.getleafvalue(root1, newList1)
+        self.getleafvalue(root2, newList2)
+        if newList1 == newList2:
+            return True
+        else:
+            return False
+        
+    def getleafvalue(self, root, newList):
+        if root == None:
+            return
+        if root.left == None and root.right == None:
+            newList.append(root.val)
+        if root.left != None:
+            self.getleafvalue(root.left, newList)
+        if root.right != None:
+            self.getleafvalue(root.right, newList)
+ 
